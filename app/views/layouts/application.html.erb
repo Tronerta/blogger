@@ -10,24 +10,47 @@
   </head>
 
   <body>
-    <p class="flash">
-      <%= flash.notice %>
-    </p>
-    <div id="container">
-      <div id="content">
-        <%= link_to "Home", root_path, class: "new_article" %>
-        <%= yield %>
-        <hr>
-        <h6>
-        <% if logged_in? %>
-          <%= "Logged in as #{current_user.email}" %>
-          <%= link_to "(logout)", logout_path %>
-        <% else %>
-          <%= link_to "(login)", login_path %>
+    <header class="container-fluid">
+      <nav class="navbar navbar-expand-lg navbar-light ">
+        <%= link_to root_path, class: "navbar-brand" do %>
+          <h1>Blogger</h1>
         <% end %>
-      </h6>
-      </div>
-    </div>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav justify-content-between w-100">
+            <div>
+              <li class="nav-item">
+                <%= link_to "Tags", tags_path, class: "nav-link" %>
+              </li>
+            </div>
+            
+            <div class="row">
+              <li class="nav-item mr-3">
+                <%= link_to "Create a New Article", new_article_path, class: "btn btn-success" %>
+              </li>
+               <li class="nav-item">
+                <% if logged_in? %>
+                  <%= link_to "Logout", logout_path, class: "btn btn-secondary " %>
+                <% else %>
+                  <%= link_to "Login", login_path, class: "btn btn-success" %>
+                <% end %>
+              </li>
+            </div>
+
+          </ul>
+        </div>
+      </nav>
+    </header>
+    
+    <div class="container-fluid">
+      <%= yield %>
+    </div>   
+   
+
   
 
   </body>

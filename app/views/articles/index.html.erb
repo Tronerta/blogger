@@ -1,13 +1,27 @@
-<h1>All Articles</h1>
+<div class="row">
+	<div class="col-md-2">
+		
+	</div>
+	<div class="col-md-10">
+		<div class="row justify-content-between">
 
-<ul id="articles">
-  <% @articles.each do |article| %>
-    <li>
-      <%= link_to article.title, article_path(article) %>
-    </li>
-  <% end %>
-</ul>
-<br>
-<hr>
-<h5><%= link_to "Tags", tags_path, class: "" %></h5>
-<%= link_to "Create a New Article", new_article_path, class: "new_article" %>
+			<% @articles.each do |article| %>
+				<div class="col-md-6">
+					<%= link_to article_path(article) do %>
+						<div class="card mb-5">
+							<%= image_tag article.image.url(:card), class: "card-img-top" %>
+							<div class="card-body">
+								<h3 class="card-title"><%= article.title %></h3>
+								<p class="card-text"><%= article.body[0, 180] + '...' %></p>
+							</div>
+						</div>
+					<% end %>
+				</div>
+			<% end %>
+		</div>		
+	</div>
+	
+</div>
+
+
+

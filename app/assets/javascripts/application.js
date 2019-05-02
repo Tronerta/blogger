@@ -13,4 +13,14 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
+//= require jquery3
+//= require popper
+//= require bootstrap-sprockets
 //= require_tree .
+
+$(document).on('turbolinks:load', function(){
+	$('input[type="file"]').change(function(e){
+    var fileName = e.target.files[0].name;
+    $('.custom-file-label').html(fileName);
+  });
+})
