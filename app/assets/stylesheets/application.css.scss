@@ -28,6 +28,7 @@ body {
 header {
 	.navbar {
 		background: none;
+		padding: 0.5rem 1rem 0.5rem 0;
 		.navbar-brand {
 			color: $main_orange;
 		}
@@ -46,7 +47,6 @@ header {
 	}
 }
 
-
 .row {
 	.col-md-10 {
 		.row {
@@ -55,7 +55,7 @@ header {
 					color: inherit;
 					text-decoration: none;
 					.card {
-						height: 300px;
+						height: 350px;
 						// &:hover {
 						// 	outline: 3px solid $main_orange;
 						// 	transition: outline 200ms linear;
@@ -87,12 +87,16 @@ header {
 	}
 }
 
+.article__image {
+	height: 15em;
+	width: 100%;
+	object-fit: cover;
+}
+
 .article__body {
 	background: $text_background;
 	border-radius: 5px;
-	p {
-		margin-left: 1em;
-	}
+	padding: 0;
 }
 
 .article__comments {
@@ -126,4 +130,19 @@ header {
 .notice {
 	background: $main_orange;
 	opacity: 0.5;
+}
+
+// Tags#index
+.list-group {
+	a {
+		color: inherit;
+		text-decoration: none;
+	}
+}
+
+.popular__articles {
+	border-bottom: 2px $text_background solid;
+	li:hover {
+		background: $text_background;
+	}
 }

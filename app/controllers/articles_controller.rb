@@ -6,12 +6,18 @@ class ArticlesController < ApplicationController
   # GET /articles.json
   def index
     @articles = Article.all
+
+    respond_to do |format|
+      format.html
+      format.rss { render :layout => false }
+    end
   end
 
   # GET /articles/1
   # GET /articles/1.json
   def show
     @article = Article.find(params[:id])
+    @article.increment!(:views)
 
     @comment = Comment.new
     @comment.article_id = @article.id
@@ -31,6 +37,7 @@ class ArticlesController < ApplicationController
   # POST /articles.json
   def create
     @article = Article.new(article_params)
+    @article.views = 0
 
     respond_to do |format|
       if @article.save
@@ -75,6 +82,6 @@ class ArticlesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def article_params
-      params.require(:article).permit(:title, :body, :tag_list, :image)
+      params.require(:article).permit(:title, :body, :tag_list, :image, :views)
     end
 end

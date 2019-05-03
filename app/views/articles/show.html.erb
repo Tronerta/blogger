@@ -1,67 +1,42 @@
-<section class="row ml-2">
-	<div class="col-md-12 mb-3">
-		<div class="row flex-column">
-
-			<div class="col-md-8 mb-3 ml-2">
-				<div class="row justify-content-between">
-					<div>
-						<h1><%= @article.title %></h1>
-						<% @article.tags.each do |tag| %>
-							<span class="badge badge-secondary">
-								<%= link_to tag.name, tag_path(tag), class: "tag-link" %>
-							</span>
-						<% end %>
-					</div>
-					<% if logged_in? %>
-						<div class="article__manage d-flex flex-column text-center">
-							<%= link_to "Edit", edit_article_path(@article) %>
-							<%= link_to "Delete", article_path(@article), method: :delete, data: {confirm: "Are you sure?"} %>
-						</div>
+<%= image_tag @article.image.url, class: "article__image" %>
+<section class="container mt-3">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="row justify-content-between">
+				<div>
+					
+					<h1><%= @article.title %></h1>
+					<small class="d-block text-muted">Views: <%= @article.views %></small>
+					<% @article.tags.each do |tag| %>
+						<span class="badge badge-secondary">
+							<%= link_to tag.name, tag_path(tag), class: "tag-link" %>
+						</span>
 					<% end %>
+
+				</div>
+				<% if logged_in? %>
+					<div class="article__manage d-flex flex-column text-center">
+						<%= link_to "Edit", edit_article_path(@article) %>
+						<%= link_to "Delete", article_path(@article), method: :delete, data: {confirm: "Are you sure?"} %>
+					</div>
+				<% end %>
+			</div>
+			<div class="row mt-3">
+				<div class="article__body col-md-12 p-3">
+					<% @article.body.split("\n").each do |p| %>
+						<p><%= p %></p>
+					<% end %>
+				</div>
+				<div class="col-md-12 p-0 mt-3">
+					<%= render partial: 'comments/form' %>
+					<h3>Comments (<%= @article.comments.size %>)</h3>
+					<div class="col-md-12 article__comments pl-0 mt-3">
+						<%= render partial: 'comment', collection: @article.comments %>
+					</div>
 				</div>
 				
 			</div>
 			
-			<div class="col-md-8 article__body pl-0 ml-3 pt-2">
-				<% @article.body.split("\n").each do |p| %>
-					<p><%= p %></p>
-				<% end %>
-			</div>
 		</div>
 	</div>
-	<hr>
-	
-	<div class="col-md-8">
-		<%= render partial: 'comments/form' %>
-		<h3>Comments (<%= @article.comments.size %>)</h3>
-		<div class="col-md-12 article__comments pl-0 mt-3">
-			<%= render partial: 'comment', collection: @article.comments %>
-		</div>
-	</div>
-
 </section>
-
-
-
-
-<% if false %>
-<h1><%= @article.title %></h1>
-<p>
-  Tags:
-  <% @article.tags.each do |tag| %>
-    <%= link_to tag.name, tag_path(tag) %>
-  <% end %>
-</p>
-<p><%= image_tag @article.image.url(:medium) %></p>
-<p><%= @article.body %></p>
-
-
-<%= render partial: 'comments/form' %>
-
-<%= link_to "<< Back to Articles List", articles_path %><br>
-
-
-<h3>Comments (<%= @article.comments.size %>)</h3>
-<%= render partial: 'articles/comment', collection: @article.comments %>
-
-<% end %>

@@ -1,13 +1,16 @@
-<h1>Tags:</h1>
-
-<ul id="tags">
-	<% @tags.each do |tag| %>
-		<li>
-			<%= link_to tag.name, tag_path(tag.id) %><br>
-			<%= link_to "delete tag", tag_path(tag.id), method: :delete, data: {confirm: "Really delete the tag?"} %>
-		</li><br>
-		<hr>
-	<% end %>
-</ul>
-
-<%= link_to "Home", root_path, class: "new_article" %>
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<h1>Tags:</h1>
+			<ul class="list-group">
+				<% @tags.each do |tag| %>
+					<li class="list-group-item">
+						<h3><%= link_to tag.name, tag_path(tag.id) %><h3>
+						<small class="text-muted">Articles: <%= tag.articles.count %></small>
+						<%= link_to "delete tag", tag_path(tag.id), {method: :delete, data: {confirm: "Really delete the tag?"}, class: 'btn btn-danger'} %>
+					</li>
+				<% end %>
+			</ul>
+		</div>
+	</div>
+</div>

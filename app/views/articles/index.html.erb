@@ -1,6 +1,16 @@
 <div class="row">
-	<div class="col-md-2">
-		
+	<div class="col-md-2 mb-2">
+		<ul class="list-group popular__articles">
+			<h5>Most Popular Articles:</h5>
+			<% @articles.order('views DESC').first(3).each do |article| %>
+				<%= link_to article_path(article) do %>
+					<li class="list-group-item mb-2">
+						<%= article.title %>
+						<small class="d-block text-muted mb-1">Views: <%= article.views %></small>
+					</li>
+				<% end %>
+			<% end %>
+		</ul>
 	</div>
 	<div class="col-md-10">
 		<div class="row justify-content-between">
@@ -12,6 +22,7 @@
 							<%= image_tag article.image.url(:card), class: "card-img-top" %>
 							<div class="card-body">
 								<h3 class="card-title"><%= article.title %></h3>
+								<small class="d-block text-muted mb-1">Views: <%= article.views %></small>
 								<p class="card-text"><%= article.body[0, 180] + '...' %></p>
 							</div>
 						</div>

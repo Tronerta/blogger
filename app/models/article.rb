@@ -1,7 +1,7 @@
 class Article < ApplicationRecord
 
-	has_many :comments, dependent: :destroy
-	has_many :taggings, dependent: :destroy
+	has_many :comments, :dependent => :delete_all
+	has_many :taggings, :dependent => :delete_all
 	has_many :tags, through: :taggings
 
 	has_attached_file :image, styles: { card: "800x800>", medium: "300x300>", thumb: "100x100>" }
