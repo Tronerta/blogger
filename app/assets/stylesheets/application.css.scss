@@ -24,6 +24,9 @@ $text_background: rgb(243, 243, 243);
 body {
 	font-family: 'Open Sans', sans-serif;
 }
+.article__body p {
+	font-size: 18px;
+}
 
 header {
 	.navbar {
@@ -56,10 +59,11 @@ header {
 					text-decoration: none;
 					.card {
 						height: 350px;
-						// &:hover {
-						// 	outline: 3px solid $main_orange;
-						// 	transition: outline 200ms linear;
-						// }
+						&:hover {
+							border-color: $main_orange;
+							box-shadow: 0 0 0 0.2rem $main_orange;
+							transition: box-shadow 0.3s;
+						}
 						.card-img-top {
 							object-fit: cover;
 							max-height: 150px;
