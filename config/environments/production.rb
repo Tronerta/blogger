@@ -4,8 +4,8 @@ Rails.application.configure do
     :storage => :s3,
     :preserve_files => true,
     :s3_credentials => {
-      :access_key_id => "AKIARRTMHFA7P5GV43NG",
-      :secret_access_key => "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",
+      :access_key_id => ENV.fetch('AWS_ACCESS_KEY'),
+      :secret_access_key => ENV.fetch('AWS_SECRET_ACCESS_KEY'),
       :s3_region => "us-east-1"
     },
     :bucket => 'tronerta-blogger'

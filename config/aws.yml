@@ -1,7 +1,0 @@
-development:
-  access_key_id: AKIARRTMHFA7P5GV43NG
-  secret_access_key: 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
-
-production:
-  access_key_id: AKIARRTMHFA7P5GV43NG
-  secret_access_key: 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
