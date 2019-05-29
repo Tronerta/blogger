@@ -3,8 +3,8 @@ Rails.application.configure do
   config.paperclip_defaults = {
     :storage => :s3,
     :s3_credentials => {
-      :access_key_id => "AKIARRTMHFA7P5GV43NG",
-      :secret_access_key => "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",
+      :access_key_id => "",
+      :secret_access_key => "",
       :s3_region => "us-east-1"
     },
     :bucket => 'tronerta-blogger'
